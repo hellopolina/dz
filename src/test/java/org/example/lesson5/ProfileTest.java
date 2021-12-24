@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static ru.yandex.qatools.htmlelements.matchers.common.IsElementDisplayedMatcher.isDisplayed;
 
-public class EditingProfileTest {
+public class ProfileTest {
     static WebDriver driver;
     WebDriverWait webDriverWait;
 
