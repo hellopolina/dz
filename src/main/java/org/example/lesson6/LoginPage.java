@@ -1,5 +1,6 @@
 package org.example.lesson6;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ public class LoginPage extends BaseView{
     @FindBy(xpath = "//a[@href='#' and contains(text(), 'Войти')]")
     public WebElement buttonLogin;
 
+    @Step("Нажать на кнопку регистрации")
     public LoginPage ckickButtonLogin() {
         buttonLogin.click();
         webDriverWait.until(
@@ -23,6 +25,7 @@ public class LoginPage extends BaseView{
     @FindBy(id = "LoginForm_email")
     public WebElement inputLogin;
 
+    @Step("Ввести логин")
     public LoginPage fillInputLogin(String login) {
         inputLogin.sendKeys(login);
         return this;
@@ -31,6 +34,7 @@ public class LoginPage extends BaseView{
     @FindBy(id = "LoginForm_password")
     public WebElement inputPassword;
 
+    @Step("Ввести пароль")
     public LoginPage fillInputPassword(String password) {
         inputPassword.sendKeys(password);
         return this;
@@ -39,6 +43,7 @@ public class LoginPage extends BaseView{
     @FindBy(xpath = "//button[contains(text(), 'Войти')]")
     public WebElement finishButton;
 
+    @Step("Завершить регистрацию")
     public MainPage clickFinishButton() {
         finishButton.click();
         webDriverWait.until(

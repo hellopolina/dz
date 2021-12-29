@@ -1,5 +1,6 @@
 package org.example.lesson6;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,7 @@ public class ProfilePage extends BaseView {
     @FindBy(xpath = "//li/a[@href='user/profile' and contains(text(), 'Профиль')]")
     public WebElement tabProfile;
 
+    @Step("Открыть вкладку Профиль")
     public ProfilePage clickTabProfile() {
         tabProfile.click();
         return this;
@@ -25,6 +27,7 @@ public class ProfilePage extends BaseView {
     @FindBy(xpath = "//input[@name='User[address_street]']")
     public WebElement addressStreet;
 
+    @Step("Указать улицу")
     public ProfilePage fillAddressStreet(String street) {
         addressStreet.sendKeys(street);
         return this;
@@ -33,6 +36,7 @@ public class ProfilePage extends BaseView {
     @FindBy(xpath = "//input[@name='User[address_house]']")
     public WebElement addressHouse;
 
+    @Step("Указать дом")
     public ProfilePage fillAddressHouse(String house) {
         addressHouse.sendKeys(house);
         return this;
@@ -41,6 +45,7 @@ public class ProfilePage extends BaseView {
     @FindBy(xpath = "//input[@value='Сохранить изменения']")
     public WebElement saveButton;
 
+    @Step("Сохранить изменения")
     public ProfilePage clickSaveButton() {
         saveButton.click();
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@data-dismiss='alert']")));

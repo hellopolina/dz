@@ -1,5 +1,6 @@
 package org.example.lesson6;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,7 @@ public class MainPage extends BaseView{
     @FindBy(xpath = "//div[@id='user-login-hint']")
     public WebElement openProfile;
 
+    @Step("Открыть вкладку Профиль")
     public ProfilePage clickOpenProfile() {
         openProfile.click();
         webDriverWait.until(
@@ -27,6 +29,7 @@ public class MainPage extends BaseView{
     @FindBy(xpath = "//a[contains(text(), 'Новый год')]")
     public WebElement newYearTab;
 
+    @Step("Открыть вкладку Новый Год")
     public MainPage clickNewYearTab() {
         newYearTab.click();
         return this;
@@ -35,6 +38,7 @@ public class MainPage extends BaseView{
     @FindBy(xpath = "//a[contains(text(), 'Балет Щелкунчик')]")
     public WebElement ballet;
 
+    @Step("Перейти на страницу про Щелкунчика")
     public BalletPage clickBallet() {
         ballet.click();
         return new BalletPage(driver);
