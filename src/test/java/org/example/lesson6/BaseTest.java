@@ -25,9 +25,9 @@ public class BaseTest {
         webDriverWait = new WebDriverWait(driver, 5);
     }
 
-//    @AfterEach
-//    void tearDown() {
-//        driver.quit();
-//    }
+    @AfterEach
+    void tearDown() {
+        driver.quit();
+    }
 
 }
