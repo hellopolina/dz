@@ -12,22 +12,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.lessThan;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ApiYandex {
-
-    void common() {
-
-        RequestSpecification requestSpecification = new RequestSpecBuilder()
-                .build();
-
-        ResponseSpecification responseSpecification = new ResponseSpecBuilder()
-                .build();
-
-        given()
-                .spec(requestSpecification)
-                .response()
-                .spec(responseSpecification);
-    }
 
     @Test
     @DisplayName("Расписание полётов")
