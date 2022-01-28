@@ -1,7 +1,9 @@
 package org.example.autotests_backend;
 
+import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.filter.log.LogDetail;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.junit.jupiter.api.*;
@@ -14,6 +16,25 @@ import static org.hamcrest.Matchers.lessThan;
 
 public class ApiYandex {
 
+    static ResponseSpecification responseSpecification;
+
+    static RequestSpecification requestSpecification;
+
+
+    @BeforeEach
+    void setUp() {
+
+        requestSpecification = new RequestSpecBuilder()
+                .log(LogDetail.ALL)
+                .build();
+
+
+        responseSpecification = new ResponseSpecBuilder()
+                .expectResponseTime(lessThan(2000L))
+                .build();
+        RestAssured.responseSpecification = responseSpecification;
+    }
+
     @Test
     @DisplayName("Расписание полётов")
     @Order(1)
@@ -22,8 +43,6 @@ public class ApiYandex {
                 .when()
                 .get("https://api.rasp.yandex.net/v3.0/search/?apikey=5419f50f-0f61-425f-b03f-2d8b4a153a79&format=json&from=c146&to=c213&lang=ru_RU&page=1&date=20220126")
                 .then()
-                .log()
-                .all()
                 .assertThat()
                 .statusCode(200)
                 .body(containsString("pagination"));
@@ -37,8 +56,6 @@ public class ApiYandex {
                 .when()
                 .get("https://api.rasp.yandex.net/v3.0/schedule/?apikey=5419f50f-0f61-425f-b03f-2d8b4a153a79&station=s9600213&transport_types=suburban&direction=на%20Москву")
                 .then()
-                .log()
-                .all()
                 .assertThat()
                 .statusCode(200)
                 .body(containsString("schedule"));
@@ -52,8 +69,6 @@ public class ApiYandex {
                 .when()
                 .get("https://api.rasp.yandex.net/v3.0/thread/?apikey=5419f50f-0f61-425f-b03f-2d8b4a153a79&station=s9600213&format=json&uid=34&lang=ru_RU&show_systems=all")
                 .then()
-                .log()
-                .all()
                 .assertThat()
                 .statusCode(404)
                 .statusLine(containsString("Not Found"))
@@ -68,8 +83,6 @@ public class ApiYandex {
                 .when()
                 .get("https://api.rasp.yandex.net/v3.0/nearest_stations/?apikey=5419f50f-0f61-425f-b03f-2d8b4a153a79&format=json&lat=50.440046&lng=40.4882367&distance=50&lang=ru_RU")
                 .then()
-                .log()
-                .all()
                 .assertThat()
                 .statusCode(200)
                 .body(containsString("Верхний Мамон, трасса"));
@@ -83,8 +96,6 @@ public class ApiYandex {
                 .when()
                 .get("https://api.rasp.yandex.net/v3.0/nearest_settlement/?apikey=5419f50f-0f61-425f-b03f-2d8b4a153a79&format=json&lat=50.440046&lng=40.4882367&distance=50&lang=ru_RU")
                 .then()
-                .log()
-                .all()
                 .assertThat()
                 .statusCode(200)
                 .body(containsString("Павловск"));
@@ -98,8 +109,6 @@ public class ApiYandex {
                 .when()
                 .get("https://api.rasp.yandex.net/v3.0/carrier/?format=json&apikey=5419f50f-0f61-425f-b03f-2d8b4a153a79&lang=ru_RU&code=c10680&system=iata")
                 .then()
-                .log()
-                .all()
                 .assertThat()
                 .statusCode(404)
                 .statusLine(containsString("Not Found"))
@@ -114,8 +123,6 @@ public class ApiYandex {
                 .when()
                 .get("https://api.rasp.yandex.net/v3.0/stations_list/?apikey=5419f50f-0f61-425f-b03f-2d8b4a153a79&lang=ru_RU&format=json")
                 .then()
-                .log()
-                .all()
                 .assertThat()
                 .statusCode(200)
                 .time(lessThan(60L), TimeUnit.SECONDS);
