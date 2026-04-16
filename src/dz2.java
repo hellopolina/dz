@@ -12,7 +12,7 @@ public class dz2 {
         double contribution = money * 0.075;
 
         boolean adult = age >= 18;
-        boolean hasInvitationMoney = hasInvitation || money > 500;
+        boolean hasInvitationMoney = hasInvitation || money > 50000;
 
         boolean decision = (adult && hasInvitationMoney && !isInBlackList) ? true : false;
 
