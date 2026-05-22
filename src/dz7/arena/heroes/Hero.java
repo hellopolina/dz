@@ -4,7 +4,7 @@ public class Hero {
     private String name;
     private int level;
     private int health;
-    private final static int MAX_LEVEL = 100;
+    public final static int MAX_LEVEL = 100;
     private static int heroesCreated;
 
     public Hero(String name, int level, int health) {
@@ -15,19 +15,17 @@ public class Hero {
     }
 
     public void printInfo() {
-        System.out.printf("- Имя героя: %s,\n- Уровень: %d,\n- Здоровье: %d,\n", name, level, health);
+        System.out.println(this);
     }
 
     public void takeDamage(int damage) {
-        health = health - damage;
-        if (health < 0) {
-            health = 0;
+        if (health > 0) {
+            health -= damage;
         }
     }
 
     public void levelUp() {
-        if (level < 100) level++;
-        else level = MAX_LEVEL;
+        if (level < MAX_LEVEL) level++;
     }
 
     public void attack() {

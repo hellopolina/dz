@@ -1,4 +1,9 @@
-package dz7.arena.heroes;
+package dz7.arena.app;
+
+import dz7.arena.heroes.Archer;
+import dz7.arena.heroes.Hero;
+import dz7.arena.heroes.Knight;
+import dz7.arena.heroes.Mage;
 
 public class Main {
 
@@ -15,7 +20,8 @@ public class Main {
         }
 
         final Knight knight = new Knight("The last of us", 99, 7, 12);
-        knight.setArmor(13);
+        System.out.println(knight);
+        knight.setArmor(knight.getArmor() + 1);
         System.out.println(knight);
     }
 }

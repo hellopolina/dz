@@ -18,7 +18,7 @@ public class Knight extends Hero {
 
     @Override
     public void attack() {
-        System.out.println("Рыцарь бьёт мечом!");
+        System.out.println("Рыцарь бьёт мечом! \n");
     }
 
 
